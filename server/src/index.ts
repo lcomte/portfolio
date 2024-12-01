@@ -1,15 +1,22 @@
 // src/index.ts
 import express, { Express, Request, Response } from "express";
+import cors from "cors"
 import dotenv from "dotenv";
 import { connectToDB } from "./config/mongoose";
-import mongoose from "mongoose";
 import {Newsletter} from "./model/newsletter";
 import {Contact} from "./model/contact"; // Import the mongoose configuration file
+
+
 
 dotenv.config();
 
 const app: Express = express();
 app.use(express.json());
+app.use(cors({
+    origin: 'http://localhost:5173', // Replace with your frontend's origin
+    methods: ['GET', 'POST'],        // Allowed HTTP methods
+    allowedHeaders: ['Content-Type'] // Allowed headers
+}));
 const port = process.env.PORT || 3000;
 connectToDB()
 
