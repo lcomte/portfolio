@@ -13,7 +13,7 @@ dotenv.config();
 const app: Express = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173', // Replace with your frontend's origin
+    origin: 'https://lucascomte.com', // Replace with your frontend's origin
     methods: ['GET', 'POST'],        // Allowed HTTP methods
     allowedHeaders: ['Content-Type'] // Allowed headers
 }));
