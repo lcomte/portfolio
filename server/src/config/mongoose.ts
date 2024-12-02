@@ -1,6 +1,7 @@
 import { connect, set } from 'mongoose';
+require('dotenv').config();
 
-const MONGO_DB_URI:string = process.env.MONGO_DB_URI || 'mongodb://localhost:27017/';
+const MONGO_DB_URI:string = process.env.MONGO_DB_URI || '';
 
 // connection to db
 export const connectToDB = async () => {
