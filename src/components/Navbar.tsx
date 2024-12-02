@@ -18,8 +18,6 @@ export default function Navbar() {
               <a href="#home" className="hover:text-blue-600 transition-colors">Home</a>
               <a href="#about" className="hover:text-blue-600 transition-colors">About</a>
               <a href="#services" className="hover:text-blue-600 transition-colors">Services</a>
-              <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
-              <a href="#blog" className="hover:text-blue-600 transition-colors">Blog</a>
               <a href="#contact" className="hover:text-blue-600 transition-colors">Contact</a>
             </div>
           </div>

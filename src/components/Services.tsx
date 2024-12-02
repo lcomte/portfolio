@@ -1,29 +1,7 @@
-import { Code, Database, Layout, Smartphone, Globe } from 'lucide-react';
+import {Code, Database, Layout, Smartphone, Globe, Bolt, GitGraphIcon} from 'lucide-react';
 import ServiceCard from './Services/ServiceCard';
 
 const services = [
-  {
-    icon: Layout,
-    name: 'UI/UX Design',
-    description: 'Create beautiful and intuitive user interfaces that engage users.',
-    features: [
-      'User Research & Analysis',
-      'Wireframing & Prototyping',
-      'Interactive Design',
-      'Usability Testing'
-    ]
-  },
-  {
-    icon: Code,
-    name: 'Web Development',
-    description: 'Build modern, responsive websites using the latest technologies.',
-    features: [
-      'Custom Website Development',
-      'E-commerce Solutions',
-      'CMS Integration',
-      'Performance Optimization'
-    ]
-  },
   {
     icon: Database,
     name: 'Backend Development',
@@ -36,14 +14,14 @@ const services = [
     ]
   },
   {
-    icon: Smartphone,
-    name: 'Mobile Development',
-    description: 'Create native and cross-platform mobile applications.',
+    icon: Code,
+    name: 'Full Stack Development',
+    description: 'Build modern, responsive websites using the latest technologies.',
     features: [
-      'iOS & Android Apps',
-      'React Native Development',
-      'App Store Deployment',
-      'Mobile UI Design'
+      'Custom Website Development',
+      'E-commerce Solutions',
+      'CMS Integration',
+      'Performance Optimization',
     ]
   },
   {
@@ -55,6 +33,26 @@ const services = [
       'Code Review',
       'Performance Audits',
       'Team Training'
+    ]
+  },
+  {
+    icon: Bolt,
+    name: "Software Engineering",
+    description: 'Develop modern software solutions',
+    features: [
+        'Robotics',
+        'IOT',
+        'Blockchain'
+    ]
+  },
+  {
+    icon: GitGraphIcon,
+    name: "Data Science",
+    description: 'Test',
+    features: [
+        'Data analysis',
+        'Business Intelligence',
+        'Big Data'
     ]
   }
 ];
