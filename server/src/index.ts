@@ -4,7 +4,9 @@ import cors from "cors"
 import dotenv from "dotenv";
 import { connectToDB } from "./config/mongoose";
 import {Newsletter} from "./model/newsletter";
-import {Contact} from "./model/contact"; // Import the mongoose configuration file
+import {Contact} from "./model/contact";
+import {sendEmail} from "./emailService/src/emailService";
+import * as fs from "node:fs"; // Import the mongoose configuration file
 
 
 
@@ -25,7 +27,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 
-app.post('/newsletter', async (req: Request, res: Response): Promise<any> => {
+/*app.post('/newsletter', async (req: Request, res: Response): Promise<any> => {
     const { email } = req.body;
 
     // Validate email
@@ -38,6 +40,8 @@ app.post('/newsletter', async (req: Request, res: Response): Promise<any> => {
         const newEntry = new Newsletter({ email });
         await newEntry.save();
 
+        const newsletterTemplate = fs.readFileSync('./emailService/template/newsletter-subscription.html', 'utf-8');
+        await sendEmail({"to": email, "subject": "Thank you for subscribing to my newsletter", "template": newsletterTemplate});
         // Respond with success
         res.status(201).json({ message: 'Email saved successfully' });
     } catch (error: any) {
@@ -45,7 +49,7 @@ app.post('/newsletter', async (req: Request, res: Response): Promise<any> => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-
+*/
 app.post('/contact', async (req: Request, res: Response): Promise<any> =>{
     const {name, email, message} = req.body;
 
@@ -60,6 +64,15 @@ app.post('/contact', async (req: Request, res: Response): Promise<any> =>{
     try{
         const newEntry = new Contact({name, email, message});
         await newEntry.save();
+        const emailVariables = {
+            email,
+            name,
+            message
+        }
+        const newsletterTemplate = fs.readFileSync('/Users/lucascomte/project/portfolio/server/src/emailService/template/contact.html', 'utf-8');
+        await sendEmail({"to": email, "subject": "New message", "template": newsletterTemplate, "variables": emailVariables});
+        // Respond with success
+        res.status(201).json({ message: 'Email saved successfully' });
         res.status(201).json({message: "Thank you for your message I will come back quickly to you"})
     } catch (error: any) {
         console.error('Error saving message:', error.message);

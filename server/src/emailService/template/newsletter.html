@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{newsletter_title}}</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; background-color: #f3f4f6;">
+<div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background-color: white; border-radius: 8px; padding: 32px; margin: 20px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+        <div style="text-align: center; margin-bottom: 32px;">
+            <h1 style="color: #1e3a8a; font-size: 24px; margin-bottom: 16px;">{{newsletter_title}}</h1>
+            <p style="color: #4b5563; font-size: 16px; line-height: 24px;">
+                {{newsletter_description}}
+            </p>
+        </div>
+
+        <div style="margin: 32px 0;">
+            {{#each articles}}
+            <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
+                <h2 style="color: #1e3a8a; font-size: 20px; margin-bottom: 12px;">{{title}}</h2>
+                <p style="color: #4b5563; margin-bottom: 16px;">{{excerpt}}</p>
+                <a href="{{url}}" style="display: inline-block; background-color: #2563eb; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none;">
+                    Read More
+                </a>
+            </div>
+            {{/each}}
+        </div>
+
+        <div style="margin-top: 32px; text-align: center;">
+            <p style="color: #6b7280; font-size: 14px;">
+                Want to unsubscribe?
+            </p>
+            <a href="{{unsubscribe_url}}" style="display: inline-block; background-color: #ef4444; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; margin-top: 16px;">
+                Unsubscribe
+            </a>
+        </div>
+
+        <div style="margin-top: 32px; padding-top: 32px; border-top: 1px solid #e5e7eb; text-align: center;">
+            <p style="color: #9ca3af; font-size: 14px;">
+                © {{current_year}} John Doe. All rights reserved.
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
