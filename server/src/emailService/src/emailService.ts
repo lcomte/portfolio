@@ -29,21 +29,21 @@ const replaceTemplateVariables = (template: string, variables: Record<string, st
 
 
 export const sendEmail = async ({ to, subject, template, variables }: EmailParams): Promise<void> => {
-    const html = replaceTemplateVariables(template, variables);
-    const params: AWS.SES.SendEmailRequest = {
-        Destination: {
-            ToAddresses: [to],
-        },
-        Message: {
-            Body: {
-                Html: { Charset: 'UTF-8', Data: html },
-            },
-            Subject: { Charset: 'UTF-8', Data: subject },
-        },
-        Source: process.env.FROM_EMAIL!,
-    };
-
     try {
+        const html = replaceTemplateVariables(template, variables);
+        const params: AWS.SES.SendEmailRequest = {
+            Destination: {
+                ToAddresses: [to],
+            },
+            Message: {
+                Body: {
+                    Html: { Charset: 'UTF-8', Data: html },
+                },
+                Subject: { Charset: 'UTF-8', Data: subject },
+            },
+            Source: process.env.FROM_EMAIL!,
+        };
+
         await ses.sendEmail(params).promise();
         console.log(`Email sent to ${to}`);
     } catch (error) {
