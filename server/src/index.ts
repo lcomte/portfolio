@@ -102,7 +102,6 @@ app.post('/contact', async (req: Request, res: Response): Promise<any> =>{
         const newsletterTemplate = fs.readFileSync('/Users/lucascomte/project/portfolio/server/src/emailService/template/contact.html', 'utf-8');
         await sendEmail({"to": email, "subject": "New message", "template": newsletterTemplate, "variables": emailVariables});
         // Respond with success
-        res.status(201).json({ message: 'Email saved successfully' });
         res.status(201).json({message: "Thank you for your message I will come back quickly to you"})
     } catch (error: any) {
         console.error('Error saving message:', error.message);
