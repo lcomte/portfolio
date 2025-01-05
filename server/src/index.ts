@@ -20,6 +20,8 @@ app.use(cors({
     methods: ['GET', 'POST', "PUT", "DELETE"],        // Allowed HTTP methods
     allowedHeaders: ['Content-Type'] // Allowed headers
 }));
+
+
 const port = process.env.PORT || 3000;
 connectToDB()
 
@@ -28,7 +30,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 
-/*app.post('/newsletter', async (req: Request, res: Response): Promise<any> => {
+app.post('/newsletter/subscribe', async (req: Request, res: Response): Promise<any> => {
     const { email } = req.body;
 
     // Validate email
@@ -40,9 +42,12 @@ app.get("/", (req: Request, res: Response) => {
         // Create a new newsletter entry
         const newEntry = new Newsletter({ email });
         await newEntry.save();
-
-        const newsletterTemplate = fs.readFileSync('./emailService/template/newsletter-subscription.html', 'utf-8');
-        await sendEmail({"to": email, "subject": "Thank you for subscribing to my newsletter", "template": newsletterTemplate});
+        const unsubscribe: string = req.protocol + "://" + req.get("host") + "/unsubscribe/" + newEntry.id;
+        const emailVariables = {
+            unsubscribe_url: unsubscribe
+        }
+        const newsletterTemplate = fs.readFileSync('./src/emailService/template/newsletter-subscription.html', 'utf-8');
+        await sendEmail({"to": email, "subject": "Thank you for subscribing to my newsletter", "template": newsletterTemplate, variables: emailVariables});
         // Respond with success
         res.status(201).json({ message: 'Email saved successfully' });
     } catch (error: any) {
@@ -50,7 +55,24 @@ app.get("/", (req: Request, res: Response) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-*/
+
+app.get('/unsubscribe/:id', async (req:Request, res: Response): Promise<any> => {
+    const { id } = req.params;
+
+    try {
+        // Find and delete the subscriber by ID
+        const subscriber = await Newsletter.findByIdAndDelete(id);
+
+        if (!subscriber) {
+            return res.status(404).json({ message: 'Subscriber not found.' });
+        }
+
+        res.status(200).json({ message: 'You have successfully unsubscribed.' });
+    } catch (error) {
+        console.error('Error unsubscribing:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
 
 app.get('/project', async  (req: Request, res: Response): Promise<any> => {
     res.send(await Project.find())
@@ -99,7 +121,7 @@ app.post('/contact', async (req: Request, res: Response): Promise<any> =>{
             name,
             message
         }
-        const newsletterTemplate = fs.readFileSync('/Users/lucascomte/project/portfolio/server/src/emailService/template/contact.html', 'utf-8');
+        const newsletterTemplate = fs.readFileSync('./src/emailService/template/contact.html', 'utf-8');
         await sendEmail({"to": email, "subject": "New message", "template": newsletterTemplate, "variables": emailVariables});
         // Respond with success
         res.status(201).json({message: "Thank you for your message I will come back quickly to you"})
