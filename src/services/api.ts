@@ -22,7 +22,7 @@ export const getProjects = async (): Promise<Project[]> => {
 };
 
 export const subscribeToNewsletter = async (email: string): Promise<SubscriptionResponse> => {
-  const response = await axios.post(`${API_URL}/newsletter`, { email });
+  const response = await axios.post(`${API_URL}/newsletter/subscribe`, { email });
   return response.data;
 };
 
