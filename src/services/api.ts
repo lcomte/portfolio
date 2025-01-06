@@ -4,7 +4,7 @@ import { NewsletterSubscription, SubscriptionResponse } from '../types/newslette
 import { Project } from '../types/project';
 import { ContactFormData, ContactResponse } from '../types/contact';
 
-const API_URL = 'http://backend.eu-west-3.elasticbeanstalk.com/'; // Replace with your actual API URL
+const API_URL = 'http://backend.eu-west-3.elasticbeanstalk.com'; // Replace with your actual API URL
 
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   const response = await axios.get(`${API_URL}/posts`);
