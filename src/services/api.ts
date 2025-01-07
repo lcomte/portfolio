@@ -5,7 +5,7 @@ import { Project } from '../types/project';
 import { ContactFormData, ContactResponse } from '../types/contact';
 
 const API_URL = 'https://api.lucascomte.com'; // Replace with your actual API URL
-
+//const API_URL = 'http://localhost:3000'; // Replace with your actual API URL
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   const response = await axios.get(`${API_URL}/posts`);
   return response.data;
@@ -17,7 +17,7 @@ export const getBlogPost = async (id: string): Promise<BlogPostFull> => {
 };
 
 export const getProjects = async (): Promise<Project[]> => {
-  const response = await axios.get(`${API_URL}/projects`);
+  const response = await axios.get(`${API_URL}/project/display`);
   return response.data;
 };
 

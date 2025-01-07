@@ -23,6 +23,7 @@ function App() {
               <Hero />
               <About />
               <Timeline />
+              <Projects />
               <Services />
               <Contact />
             </main>

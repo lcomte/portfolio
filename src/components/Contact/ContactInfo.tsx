@@ -16,6 +16,11 @@ const contactInfo: ContactInfoItem[] = [
         icon: MapPin,
         title: 'Location',
         content: 'Geneva, Switzerland'
+    },
+    {
+        icon: Phone,
+        title: 'WeChat',
+        content: 'lc63700'
     }
 ];
 
