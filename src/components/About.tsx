@@ -2,28 +2,34 @@ import {Code, Server, Palette, Users, MapPin, GitGraphIcon, Bot, Cloud} from 'lu
 
 const skills = [
   {
+    icon: Server,
+    title: 'Backend Development',
+    description: 'Expert in backend development, I like to create scalable application',
+    tech: ['NodeJS', 'NestJS', 'PostgreSQL', 'MongoDB', 'Mongoose', 'typeORM']
+  },
+  {
     icon: Code,
     title: 'Frontend Development',
-    description: 'Expert in React, TypeScript, and modern CSS frameworks like Tailwind.',
+    description: 'Expert in frontend development, and design user friendly application',
     tech: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js']
+  },
+  {
+    icon: Cloud,
+    title: 'Cloud',
+    description: 'Building strong cloud architecture for scalable application, and deploying the frontend',
+    tech: ['AWS', 'GCP', 'Azure', 'Ansible', 'Docker']
+  },
+  {
+    icon: Bot,
+    title: 'Robotic engineer',
+    description: 'After 3 years of experience in robotics at CERN, I can provide my expertise to build robotics system especially GUI',
+    tech: ["Python", "Unity", "C#", "C++", "ROS"]
   },
   {
     icon: GitGraphIcon,
     title: 'Data Science',
     description: 'Building  dashboard for data analysis',
     tech: ['Python', 'Panda', 'PowerBI', 'Tableau']
-  },
-  {
-    icon: Bot,
-    title: 'Robotic engineer',
-    description: 'Can help you with building GUI robot solution',
-    tech: ["Python", "Unity", "C#", "C++"]
-  },
-  {
-    icon: Cloud,
-    title: 'Cloud',
-    description: 'Building strong cloud architecture',
-    tech: ['AWS', 'GCP', 'Azure', 'Ansible', 'Docker']
   },
   {
     icon: Users,
@@ -52,9 +58,9 @@ export default function About() {
             </h2>
             <p className="mt-4 text-lg text-gray-500">
               I'm a passionate Full Stack Developer with over 4 years of experience in software engineering.
-              My expertise spans backend development, cloud architecture, and creating scalable, user-friendly
-              applications that address real-world challenges.
-              I've worked on projects involving cutting-edge technologies like AWS, Node, and C#, delivering robust
+              My expertise spans Full-Stack development, cloud architecture, and creating scalable, user-friendly
+              applications that address real-world challenges.<br/>
+              I've worked on projects involving cutting-edge technologies like NodeJS, ReactJS, NextJS, NestJS, C#, AWS, .Net delivering robust
               solutions for diverse domains, including Medtech, robotics, e-com, and automation.
             </p>
             <p className="mt-4 text-lg text-gray-500">
