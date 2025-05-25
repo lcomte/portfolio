@@ -12,7 +12,20 @@ export default function Projects() {
     const fetchProjects = async () => {
       try {
         const data = await getProjects();
-        setProjects(data);
+        
+        // Add the Callavox project to the fetched projects
+        const callavoxProject: Project = {
+          id: 'callavox-ai',
+          title: 'Callavox AI',
+          description: 'An AI solution for hotels and restaurants to efficiently handle client requests from booking to special accommodations. Streamlines communication and improves customer service through intelligent automation.',
+          image: 'https://images.pexels.com/photos/6476587/pexels-photo-6476587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          tech: ['AI', 'Machine Learning', 'Node.js', 'React', 'AWS'],
+          github: '',
+          demo: 'https://callavox.com'
+        };
+        
+        // Add the Callavox project to the beginning of the array to feature it prominently
+        setProjects([callavoxProject, ...data]);
       } catch (err) {
         setError('Failed to load projects');
       } finally {
