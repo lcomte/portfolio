@@ -13,7 +13,33 @@ export default function Projects() {
       try {
         const data = await getProjects();
         
-        // Add the Callavox project to the fetched projects
+        // Check if the Callavox project is already included from the API response
+        const hasCallavoxProject = data.some(project => 
+          project.title === 'Callavox AI' || project.demo === 'https://callavox.com'
+        );
+        
+        if (!hasCallavoxProject) {
+          // Add the Callavox project to the fetched projects
+          const callavoxProject: Project = {
+            id: 'callavox-ai',
+            title: 'Callavox AI',
+            description: 'An AI solution for hotels and restaurants to efficiently handle client requests from booking to special accommodations. Streamlines communication and improves customer service through intelligent automation.',
+            image: 'https://images.pexels.com/photos/6476587/pexels-photo-6476587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            tech: ['AI', 'Machine Learning', 'Node.js', 'React', 'AWS'],
+            github: '',
+            demo: 'https://callavox.com'
+          };
+          
+          // Add the Callavox project to the beginning of the array to feature it prominently
+          setProjects([callavoxProject, ...data]);
+        } else {
+          setProjects(data);
+        }
+      } catch (err) {
+        console.error('Project loading error:', err);
+        setError('Failed to load projects from the server. Showing local projects only.');
+        
+        // Fallback to just showing the Callavox project if the API fails
         const callavoxProject: Project = {
           id: 'callavox-ai',
           title: 'Callavox AI',
@@ -24,10 +50,7 @@ export default function Projects() {
           demo: 'https://callavox.com'
         };
         
-        // Add the Callavox project to the beginning of the array to feature it prominently
-        setProjects([callavoxProject, ...data]);
-      } catch (err) {
-        setError('Failed to load projects');
+        setProjects([callavoxProject]);
       } finally {
         setLoading(false);
       }
@@ -54,8 +77,11 @@ export default function Projects() {
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
             </div>
           ) : error ? (
-            <div className="text-center text-red-600 py-8">
-              <p>{error}</p>
+            <div>
+              <p className="text-center text-amber-600 py-4 mb-6 bg-amber-50 rounded-lg">
+                {error}
+              </p>
+              <ProjectCarousel projects={projects} />
             </div>
           ) : (
             <ProjectCarousel projects={projects} />
