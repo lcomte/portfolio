@@ -24,7 +24,7 @@ const timelineData = [
     website: 'https://home.cern',
     location: 'Geneva, Switzerland',
     description: 'I contributed to enhancing robotic control systems by implementing key features in the Robotic GUI, including a Radio Protection Survey mission and control of the robots. I optimized data transmission efficiency by 60% with a Python multiprocess application and developed a user-friendly web interface integrated with configuration databases for seamless robotic operations.\n' +
-        'Collaborating with my team, I ensured 24/7 operation of a robotic system for CERN’s Science Gateway. I also deployed web applications on OpenStack and led a Unity project team, managing the development lifecycle and ensuring timely delivery. Leveraging advanced web technologies, I built systems enabling efficient robotic control, with regular code reviews to maintain high-quality standards.',
+        'Collaborating with my team, I ensured 24/7 operation of a robotic system for CERN's Science Gateway. I also deployed web applications on OpenStack and led a Unity project team, managing the development lifecycle and ensuring timely delivery. Leveraging advanced web technologies, I built systems enabling efficient robotic control, with regular code reviews to maintain high-quality standards.',
     icon: AtomIcon
   },
   {
@@ -33,7 +33,7 @@ const timelineData = [
     company: 'Epitech International',
     website: 'https://www.epitech.eu/',
     location: 'Paris, France',
-    description: 'During my Master’s at Epitech, I chose modules on Blockchain, AI, and storytelling to expand my technical and creative skill set.\n' +
+    description: 'During my Master's at Epitech, I chose modules on Blockchain, AI, and storytelling to expand my technical and creative skill set.\n' +
         'For my end-of-study project, I developed an AI-powered SaaS application that manages the entire lifecycle of meetings from scheduling and summarizing to ensuring follow-ups and creating Jira tickets. The platform integrates with enterprise solutions to enhance team productivity and streamline workflows.',
     icon: GraduationCap
   },
@@ -52,7 +52,7 @@ const timelineData = [
     company: 'CERN',
     website: 'https://home.cern',
     location: 'Geneva, Switzerland',
-    description: 'Skilled in feature development and integration within CERN’s robotic framework using C++, enhancing system functionality and performance. Proficient in implementing point cloud reconstruction algorithms to improve 3D data representation accuracy and efficiency.\n' +
+    description: 'Skilled in feature development and integration within CERN's robotic framework using C++, enhancing system functionality and performance. Proficient in implementing point cloud reconstruction algorithms to improve 3D data representation accuracy and efficiency.\n' +
         'I contributed to optimizing Unity GUIs with C#, improving user experience for robotic control. Additionally, I created and maintained installation scripts for seamless deployment of robotic frameworks, managed dependencies, and enhanced integration pipelines for reliability. Notably, I reduced bandwidth usage by 20% and developed monitoring tools to ensure compliance with the stringent network standards of the Large Hadron Collider (LHC).\n',
     icon: AtomIcon
   },
@@ -105,41 +105,54 @@ export default function Timeline() {
             <div className="max-w-3xl mx-auto">
               {timelineData.map((item, index) => {
                 const Icon = item.icon;
+                const isLast = index === timelineData.length - 1;
                 return (
                     <div key={index} className="relative pl-8 sm:pl-32 py-6 group">
-                      {/* Timeline line */}
-                      <div className="absolute top-0 left-8 sm:left-16 h-full w-px bg-blue-200 group-hover:bg-blue-400 transition-colors duration-200"/>
+                      {/* Enhanced Timeline line with gradient and better styling */}
+                      {!isLast && (
+                        <div className="absolute top-0 left-8 sm:left-16 h-full w-0.5 bg-gradient-to-b from-blue-300 via-blue-400 to-blue-300 group-hover:from-blue-500 group-hover:via-blue-600 group-hover:to-blue-500 transition-all duration-300 opacity-60 group-hover:opacity-100">
+                          {/* Decorative dots along the line */}
+                          <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-400 rounded-full opacity-40"></div>
+                          <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-400 rounded-full opacity-40"></div>
+                          <div className="absolute top-24 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-400 rounded-full opacity-40"></div>
+                        </div>
+                      )}
 
-                      {/* Timeline icon */}
-                      <div className="absolute left-0 sm:left-12 flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 text-blue-600 shadow-md border-4 border-white group-hover:border-blue-100 transition-colors duration-200">
+                      {/* Enhanced Timeline icon with better shadow and border */}
+                      <div className="absolute left-0 sm:left-12 flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 text-blue-600 shadow-lg border-4 border-white group-hover:border-blue-50 group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 z-10">
                         <Icon size={24} />
                       </div>
 
-                      {/* Content */}
-                      <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
-                        <span className="ml-3 text-sm font-semibold text-blue-600">{item.year}</span>
-                        <h3 className="mt-2 text-xl font-bold text-gray-900">{item.title}</h3>
-                        <div className="mt-1 flex items-center gap-2">
-                          <p className="text-base font-medium text-gray-600">{item.company}</p>
-                          {item.website && (
-                              <a
-                                  href={item.website}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-blue-600 hover:text-blue-800 transition-colors"
-                                  aria-label={`Visit ${item.company} website`}
-                              >
-                                <ExternalLink size={16} />
-                              </a>
+                      {/* Content with enhanced styling */}
+                      <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300 relative overflow-hidden">
+                        {/* Subtle background decoration */}
+                        <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-blue-400 to-blue-600 opacity-20"></div>
+                        
+                        <div className="relative z-10">
+                          <span className="ml-3 text-sm font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">{item.year}</span>
+                          <h3 className="mt-2 text-xl font-bold text-gray-900">{item.title}</h3>
+                          <div className="mt-1 flex items-center gap-2">
+                            <p className="text-base font-medium text-gray-600">{item.company}</p>
+                            {item.website && (
+                                <a
+                                    href={item.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:text-blue-800 transition-colors"
+                                    aria-label={`Visit ${item.company} website`}
+                                >
+                                  <ExternalLink size={16} />
+                                </a>
+                            )}
+                          </div>
+                          {item.location && (
+                              <p className="mt-1 text-sm text-gray-500 flex items-center">
+                                <MapPin size={14} className="mr-1" />
+                                {item.location}
+                              </p>
                           )}
+                          <p className="mt-2 text-gray-500 leading-relaxed">{item.description}</p>
                         </div>
-                        {item.location && (
-                            <p className="mt-1 text-sm text-gray-500 flex items-center">
-                              <MapPin size={14} className="mr-1" />
-                              {item.location}
-                            </p>
-                        )}
-                        <p className="mt-2 text-gray-500">{item.description}</p>
                       </div>
                     </div>
                 );
