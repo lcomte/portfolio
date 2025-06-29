@@ -24,7 +24,7 @@ const timelineData = [
     website: 'https://home.cern',
     location: 'Geneva, Switzerland',
     description: 'I contributed to enhancing robotic control systems by implementing key features in the Robotic GUI, including a Radio Protection Survey mission and control of the robots. I optimized data transmission efficiency by 60% with a Python multiprocess application and developed a user-friendly web interface integrated with configuration databases for seamless robotic operations.\n' +
-        'Collaborating with my team, I ensured 24/7 operation of a robotic system for CERN's Science Gateway. I also deployed web applications on OpenStack and led a Unity project team, managing the development lifecycle and ensuring timely delivery. Leveraging advanced web technologies, I built systems enabling efficient robotic control, with regular code reviews to maintain high-quality standards.',
+        'Collaborating with my team, I ensured 24/7 operation of a robotic system for CERN\'s Science Gateway. I also deployed web applications on OpenStack and led a Unity project team, managing the development lifecycle and ensuring timely delivery. Leveraging advanced web technologies, I built systems enabling efficient robotic control, with regular code reviews to maintain high-quality standards.',
     icon: AtomIcon
   },
   {
@@ -33,7 +33,7 @@ const timelineData = [
     company: 'Epitech International',
     website: 'https://www.epitech.eu/',
     location: 'Paris, France',
-    description: 'During my Master's at Epitech, I chose modules on Blockchain, AI, and storytelling to expand my technical and creative skill set.\n' +
+    description: 'During my Master\'s at Epitech, I chose modules on Blockchain, AI, and storytelling to expand my technical and creative skill set.\n' +
         'For my end-of-study project, I developed an AI-powered SaaS application that manages the entire lifecycle of meetings from scheduling and summarizing to ensuring follow-ups and creating Jira tickets. The platform integrates with enterprise solutions to enhance team productivity and streamline workflows.',
     icon: GraduationCap
   },
@@ -52,7 +52,7 @@ const timelineData = [
     company: 'CERN',
     website: 'https://home.cern',
     location: 'Geneva, Switzerland',
-    description: 'Skilled in feature development and integration within CERN's robotic framework using C++, enhancing system functionality and performance. Proficient in implementing point cloud reconstruction algorithms to improve 3D data representation accuracy and efficiency.\n' +
+    description: 'Skilled in feature development and integration within CERN\'s robotic framework using C++, enhancing system functionality and performance. Proficient in implementing point cloud reconstruction algorithms to improve 3D data representation accuracy and efficiency.\n' +
         'I contributed to optimizing Unity GUIs with C#, improving user experience for robotic control. Additionally, I created and maintained installation scripts for seamless deployment of robotic frameworks, managed dependencies, and enhanced integration pipelines for reliability. Notably, I reduced bandwidth usage by 20% and developed monitoring tools to ensure compliance with the stringent network standards of the Large Hadron Collider (LHC).\n',
     icon: AtomIcon
   },
