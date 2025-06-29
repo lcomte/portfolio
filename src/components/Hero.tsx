@@ -11,7 +11,16 @@ export default function Hero() {
           </h1>
           <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
             Building beautiful web experiences with modern technologies. 
-            Passionate about creating intuitive interfaces and scalable solutions.
+            Passionate about creating intuitive interfaces and scalable AI solutions like{' '}
+            <a 
+              href="https://callavox.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 underline font-medium"
+            >
+              Callavox
+            </a>
+            .
           </p>
           <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
             <div className="rounded-md shadow">

@@ -26,9 +26,10 @@ const services = [
   },
   {
     icon: Globe,
-    name: 'Consulting',
-    description: 'Expert advice on technology solutions and architecture.',
+    name: 'AI Solutions & Consulting',
+    description: 'Expert advice on technology solutions and AI-powered applications like Callavox for hospitality automation.',
     features: [
+      'AI Integration',
       'Technical Architecture',
       'Code Review',
       'Performance Audits',
@@ -48,11 +49,12 @@ const services = [
   {
     icon: GitGraphIcon,
     name: "Data Science",
-    description: 'Test',
+    description: 'Building intelligent data solutions and business intelligence platforms',
     features: [
         'Data analysis',
         'Business Intelligence',
-        'Big Data'
+        'Big Data',
+        'AI/ML Implementation'
     ]
   }
 ];
@@ -68,6 +70,25 @@ export default function Services() {
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
             Comprehensive development services tailored to your needs
           </p>
+        </div>
+
+        <div className="mt-8 text-center">
+          <div className="bg-blue-50 rounded-lg p-6 max-w-4xl mx-auto">
+            <h3 className="text-lg font-semibold text-blue-900 mb-2">Featured AI Solution</h3>
+            <p className="text-blue-800">
+              Discover how{' '}
+              <a 
+                href="https://callavox.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="font-bold text-blue-600 hover:text-blue-800 underline"
+              >
+                Callavox
+              </a>
+              {' '}transforms hospitality operations with AI-powered customer communication automation, 
+              helping hotels and restaurants streamline their guest services and improve customer satisfaction.
+            </p>
+          </div>
         </div>
 
         <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">

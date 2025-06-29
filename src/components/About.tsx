@@ -21,9 +21,9 @@ const skills = [
   },
   {
     icon: Bot,
-    title: 'Robotic engineer',
-    description: 'After 3 years of experience in robotics at CERN, I can provide my expertise to build robotics system especially GUI',
-    tech: ["Python", "Unity", "C#", "C++", "ROS"]
+    title: 'AI & Automation',
+    description: 'Building AI-powered solutions like Callavox, which helps hotels and restaurants efficiently handle client requests through intelligent automation.',
+    tech: ["Python", "AI", "Machine Learning", "NLP", "Automation"]
   },
   {
     icon: GitGraphIcon,
@@ -62,6 +62,18 @@ export default function About() {
               applications that address real-world challenges.<br/>
               I've worked on projects involving cutting-edge technologies like NodeJS, ReactJS, NextJS, NestJS, C#, AWS, .Net delivering robust
               solutions for diverse domains, including Medtech, robotics, e-com, and automation.
+            </p>
+            <p className="mt-4 text-lg text-gray-500">
+              Recently, I've been focused on AI-powered solutions, developing{' '}
+              <a 
+                href="https://callavox.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline font-medium"
+              >
+                Callavox
+              </a>
+              , an innovative AI platform that revolutionizes how hotels and restaurants handle customer communications and requests.
             </p>
             <p className="mt-4 text-lg text-gray-500">
               Currently, I'm looking for opportunities in one of the following locations:
