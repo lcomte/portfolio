@@ -16,7 +16,7 @@ export default function LanguageSwitcher() {
     >
       <Globe size={16} />
       <span className="text-sm font-medium">
-        {language === 'en' ? 'FR' : 'EN'}
+        {language === 'en' ? 'EN' : 'FR'}
       </span>
     </button>
   );
