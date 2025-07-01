@@ -4,8 +4,7 @@ import {
   ExternalLink,
   Cross,
   AtomIcon,
-  ComputerIcon,
-    BookmarkIcon
+  ComputerIcon
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -13,14 +12,6 @@ export default function Timeline() {
   const { t } = useLanguage();
 
   const timelineData = [
-    {
-      year: 'Future',
-      title: "Full Stack engineer / Backend developer / Software engineer / Cloud Engineer",
-      company: "Searching ...",
-      location: "Singapore, Shanghai, Guangzhou, Shenzhen, Hong Kong, Japan, Thailand, Remote",
-      description: "I'm actually looking for a new opportunities in one of the following location, if your looking for a motivated engineer ready to discover new culture feel free to contact me",
-      icon: BookmarkIcon
-    },
     {
       year: '2022 - Present',
       title: 'Software engineer',

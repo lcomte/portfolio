@@ -1,4 +1,4 @@
-import {Code, Database, Layout, Smartphone, Globe, Bolt, GitGraphIcon} from 'lucide-react';
+import {Code, Database, Layout, Smartphone, Globe, Bolt, GitGraphIcon, Bot} from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import ServiceCard from './Services/ServiceCard';
 
@@ -6,6 +6,17 @@ export default function Services() {
   const { t } = useLanguage();
 
   const services = [
+    {
+      icon: Bot,
+      name: t('services.ai.name'),
+      description: t('services.ai.description'),
+      features: [
+        'AI Marketing Agents',
+        'Customer Communication Automation',
+        'Intelligent Chatbots',
+        'Business Process Automation'
+      ]
+    },
     {
       icon: Database,
       name: t('services.backend.name'),
@@ -33,21 +44,11 @@ export default function Services() {
       name: t('services.consulting.name'),
       description: t('services.consulting.description'),
       features: [
-        'AI Integration',
+        'AI Integration Strategy',
         'Technical Architecture',
-        'Code Review',
+        'Digital Transformation',
         'Performance Audits',
         'Team Training'
-      ]
-    },
-    {
-      icon: Bolt,
-      name: t('services.software.name'),
-      description: t('services.software.description'),
-      features: [
-          'Robotics',
-          'IOT',
-          'Blockchain'
       ]
     },
     {
@@ -76,7 +77,7 @@ export default function Services() {
         </div>
 
         <div className="mt-8 text-center">
-          <div className="bg-blue-50 rounded-lg p-6 max-w-4xl mx-auto">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 max-w-4xl mx-auto border border-blue-100">
             <h3 className="text-lg font-semibold text-blue-900 mb-2">{t('services.featured.title')}</h3>
             <p className="text-blue-800">
               {t('services.featured.description')} {' '}
@@ -88,7 +89,7 @@ export default function Services() {
               >
                 Callavox
               </a>
-              {' '} {t('services.featured.description')}
+              {' '} {t('services.featured.tagline')}
             </p>
           </div>
         </div>

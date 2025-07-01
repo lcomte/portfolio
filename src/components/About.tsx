@@ -43,15 +43,6 @@ export default function About() {
     }
   ];
 
-  const locations = [
-    'Singapore',
-    'Shanghai',
-    'Hong Kong',
-    'Shenzhen',
-    'Tokyo',
-    'Bangkok'
-  ];
-
   return (
       <section id="about" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,22 +71,8 @@ export default function About() {
             <p className="mt-4 text-lg text-gray-500">
               {t('about.description.5')}
             </p>
-            <ul className="mt-4 grid grid-cols-2 gap-2">
-              {locations.map((location, index) => (
-                  <li
-                      key={index}
-                      className="flex items-center space-x-2 bg-gray-50 rounded-lg p-3 shadow-sm hover:bg-blue-50 transition-colors duration-200"
-                  >
-                    <MapPin className="h-5 w-5 text-blue-500" />
-                    <span className="text-gray-700">{location}</span>
-                  </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-lg text-gray-500">
-              {t('about.description.6')}
-            </p>
             <p className="mt-4 text-lg text-gray-500">
-              {t('about.description.7')}
+              {t('about.description.6')}
             </p>
           </div>
 
