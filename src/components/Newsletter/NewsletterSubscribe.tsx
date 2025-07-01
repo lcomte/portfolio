@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Mail, Loader2, X, Check } from 'lucide-react';
 import { subscribeToNewsletter } from '../../services/api';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function NewsletterSubscribe() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const [isVisible, setIsVisible] = useState(true);
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,14 +18,14 @@ export default function NewsletterSubscribe() {
     try {
       const response = await subscribeToNewsletter(email);
       setStatus('success');
-      setMessage(response.message || 'Successfully subscribed!');
+      setMessage(response.message || t('newsletter.success'));
       setEmail('');
       setTimeout(() => {
         setIsVisible(false);
       }, 5000);
     } catch (error) {
       setStatus('error');
-      setMessage('Failed to subscribe. Please try again.');
+      setMessage(t('newsletter.error'));
     }
   };
 
@@ -42,11 +44,11 @@ export default function NewsletterSubscribe() {
         <div className="bg-blue-100 rounded-full p-2 mr-3">
           <Mail className="h-5 w-5 text-blue-600" />
         </div>
-        <h3 className="font-semibold text-gray-900">Subscribe to Newsletter</h3>
+        <h3 className="font-semibold text-gray-900">{t('newsletter.title')}</h3>
       </div>
       
       <p className="text-sm text-gray-600 mb-4">
-        Get the latest updates and articles directly in your inbox!
+        {t('newsletter.description')}
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-3">
@@ -55,7 +57,7 @@ export default function NewsletterSubscribe() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
+            placeholder={t('newsletter.email.placeholder')}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             disabled={status === 'loading' || status === 'success'}
             required
@@ -85,7 +87,7 @@ export default function NewsletterSubscribe() {
           {status === 'success' && (
             <Check className="-ml-1 mr-2 h-4 w-4" />
           )}
-          {status === 'success' ? 'Subscribed!' : 'Subscribe'}
+          {status === 'success' ? t('newsletter.subscribed') : t('newsletter.subscribe')}
         </button>
       </form>
     </div>

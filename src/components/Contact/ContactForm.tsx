@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Loader2, Check } from 'lucide-react';
 import { ContactFormData } from '../../types/contact';
 import { submitContactForm } from '../../services/api';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function ContactForm() {
     const [formData, setFormData] = useState<ContactFormData>({
@@ -11,6 +12,7 @@ export default function ContactForm() {
     });
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [message, setMessage] = useState('');
+    const { t } = useLanguage();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -19,11 +21,11 @@ export default function ContactForm() {
         try {
             const response = await submitContactForm(formData);
             setStatus('success');
-            setMessage(response.message || 'Message sent successfully!');
+            setMessage(response.message || t('contact.form.success'));
             setFormData({ name: '', email: '', message: '' });
         } catch (error) {
             setStatus('error');
-            setMessage('Failed to send message. Please try again.');
+            setMessage(t('contact.form.error'));
         }
     };
 
@@ -32,7 +34,7 @@ export default function ContactForm() {
             <div className="space-y-6">
                 <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                        Name
+                        {t('contact.form.name')}
                     </label>
                     <input
                         type="text"
@@ -47,7 +49,7 @@ export default function ContactForm() {
 
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                        Email
+                        {t('contact.form.email')}
                     </label>
                     <input
                         type="email"
@@ -62,7 +64,7 @@ export default function ContactForm() {
 
                 <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                        Message
+                        {t('contact.form.message')}
                     </label>
                     <textarea
                         id="message"
@@ -98,7 +100,7 @@ export default function ContactForm() {
                     {status === 'success' && (
                         <Check className="-ml-1 mr-2 h-4 w-4" />
                     )}
-                    {status === 'success' ? 'Message Sent!' : 'Send Message'}
+                    {status === 'success' ? t('contact.form.sent') : t('contact.form.send')}
                 </button>
             </div>
         </form>

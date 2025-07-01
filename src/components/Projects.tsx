@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { getProjects } from '../services/api';
 import { Project } from '../types/project';
+import { useLanguage } from '../contexts/LanguageContext';
 import ProjectCarousel from './Projects/ProjectCarousel';
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -37,7 +39,7 @@ export default function Projects() {
         }
       } catch (err) {
         console.error('Project loading error:', err);
-        setError('Failed to load projects from the server. Showing local projects only.');
+        setError(t('projects.loading.error'));
         
         // Fallback to just showing the Callavox project if the API fails
         const callavoxProject: Project = {
@@ -57,17 +59,17 @@ export default function Projects() {
     };
 
     fetchProjects();
-  }, []);
+  }, [t]);
 
   return (
     <section id="projects" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Featured Projects
+            {t('projects.title')}
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-            Here are some of my recent works
+            {t('projects.subtitle')}
           </p>
         </div>
 

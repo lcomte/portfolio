@@ -1,45 +1,48 @@
 import {Code, Server, Palette, Users, MapPin, GitGraphIcon, Bot, Cloud} from 'lucide-react';
-
-const skills = [
-  {
-    icon: Server,
-    title: 'Backend Development',
-    description: 'Expert in backend development, I like to create scalable application',
-    tech: ['NodeJS', 'NestJS', 'PostgreSQL', 'MongoDB', 'Mongoose', 'typeORM']
-  },
-  {
-    icon: Code,
-    title: 'Frontend Development',
-    description: 'Expert in frontend development, and design user friendly application',
-    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js']
-  },
-  {
-    icon: Cloud,
-    title: 'Cloud',
-    description: 'Building strong cloud architecture for scalable application, and deploying the frontend',
-    tech: ['AWS', 'GCP', 'Azure', 'Ansible', 'Docker']
-  },
-  {
-    icon: Bot,
-    title: 'AI & Automation',
-    description: 'Building AI-powered solutions like Callavox, which helps hotels and restaurants efficiently handle client requests through intelligent automation.',
-    tech: ["Python", "AI", "Machine Learning", "NLP", "Automation"]
-  },
-  {
-    icon: GitGraphIcon,
-    title: 'Data Science',
-    description: 'Building  dashboard for data analysis',
-    tech: ['Python', 'Panda', 'PowerBI', 'Tableau']
-  },
-  {
-    icon: Users,
-    title: 'Team Collaboration',
-    description: 'Experience in leading and working with development teams.',
-    tech: ['Git', 'Agile', 'Scrum', 'Code Review']
-  }
-];
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function About() {
+  const { t } = useLanguage();
+
+  const skills = [
+    {
+      icon: Server,
+      title: t('skills.backend.title'),
+      description: t('skills.backend.description'),
+      tech: ['NodeJS', 'NestJS', 'PostgreSQL', 'MongoDB', 'Mongoose', 'typeORM']
+    },
+    {
+      icon: Code,
+      title: t('skills.frontend.title'),
+      description: t('skills.frontend.description'),
+      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js']
+    },
+    {
+      icon: Cloud,
+      title: t('skills.cloud.title'),
+      description: t('skills.cloud.description'),
+      tech: ['AWS', 'GCP', 'Azure', 'Ansible', 'Docker']
+    },
+    {
+      icon: Bot,
+      title: t('skills.ai.title'),
+      description: t('skills.ai.description'),
+      tech: ["Python", "AI", "Machine Learning", "NLP", "Automation"]
+    },
+    {
+      icon: GitGraphIcon,
+      title: t('skills.data.title'),
+      description: t('skills.data.description'),
+      tech: ['Python', 'Panda', 'PowerBI', 'Tableau']
+    },
+    {
+      icon: Users,
+      title: t('skills.team.title'),
+      description: t('skills.team.description'),
+      tech: ['Git', 'Agile', 'Scrum', 'Code Review']
+    }
+  ];
+
   const locations = [
     'Singapore',
     'Shanghai',
@@ -54,17 +57,16 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-              About Me
+              {t('about.title')}
             </h2>
             <p className="mt-4 text-lg text-gray-500">
-              I'm a passionate Full Stack Developer with over 4 years of experience in software engineering.
-              My expertise spans Full-Stack development, cloud architecture, and creating scalable, user-friendly
-              applications that address real-world challenges.<br/>
-              I've worked on projects involving cutting-edge technologies like NodeJS, ReactJS, NextJS, NestJS, C#, AWS, .Net delivering robust
-              solutions for diverse domains, including Medtech, robotics, e-com, and automation.
+              {t('about.description.1')}
             </p>
             <p className="mt-4 text-lg text-gray-500">
-              Recently, I've been focused on AI-powered solutions, developing{' '}
+              {t('about.description.2')}
+            </p>
+            <p className="mt-4 text-lg text-gray-500">
+              {t('about.description.3')}{' '}
               <a 
                 href="https://callavox.com" 
                 target="_blank" 
@@ -73,10 +75,10 @@ export default function About() {
               >
                 Callavox
               </a>
-              , an innovative AI platform that revolutionizes how hotels and restaurants handle customer communications and requests.
+              {t('about.description.4')}
             </p>
             <p className="mt-4 text-lg text-gray-500">
-              Currently, I'm looking for opportunities in one of the following locations:
+              {t('about.description.5')}
             </p>
             <ul className="mt-4 grid grid-cols-2 gap-2">
               {locations.map((location, index) => (
@@ -90,19 +92,16 @@ export default function About() {
               ))}
             </ul>
             <p className="mt-6 text-lg text-gray-500">
-              Outside of work, I'm a curious solo traveler (16 countries, and more to add to the list) and lifelong learner, always eager to explore new places and
-              cultures.
+              {t('about.description.6')}
             </p>
             <p className="mt-4 text-lg text-gray-500">
-              I'm also deeply interested in emerging technologies.
-              Whether designing cloud-first applications or brainstorming bold new ideas, I thrive on collaboration,
-              creativity, and the pursuit of excellence.
+              {t('about.description.7')}
             </p>
           </div>
 
           <div className="mt-20">
             <h3 className="text-2xl font-bold text-gray-900 text-center">
-              Skills & Expertise
+              {t('about.skills.title')}
             </h3>
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {skills.map((skill, index) => {

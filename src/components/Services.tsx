@@ -1,82 +1,85 @@
 import {Code, Database, Layout, Smartphone, Globe, Bolt, GitGraphIcon} from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import ServiceCard from './Services/ServiceCard';
 
-const services = [
-  {
-    icon: Database,
-    name: 'Backend Development',
-    description: 'Develop robust and scalable server-side solutions.',
-    features: [
-      'API Development',
-      'Database Design',
-      'Cloud Integration',
-      'Security Implementation'
-    ]
-  },
-  {
-    icon: Code,
-    name: 'Full Stack Development',
-    description: 'Build modern, responsive websites using the latest technologies.',
-    features: [
-      'Custom Website Development',
-      'E-commerce Solutions',
-      'CMS Integration',
-      'Performance Optimization',
-    ]
-  },
-  {
-    icon: Globe,
-    name: 'AI Solutions & Consulting',
-    description: 'Expert advice on technology solutions and AI-powered applications like Callavox for hospitality automation.',
-    features: [
-      'AI Integration',
-      'Technical Architecture',
-      'Code Review',
-      'Performance Audits',
-      'Team Training'
-    ]
-  },
-  {
-    icon: Bolt,
-    name: "Software Engineering",
-    description: 'Develop modern software solutions',
-    features: [
-        'Robotics',
-        'IOT',
-        'Blockchain'
-    ]
-  },
-  {
-    icon: GitGraphIcon,
-    name: "Data Science",
-    description: 'Building intelligent data solutions and business intelligence platforms',
-    features: [
-        'Data analysis',
-        'Business Intelligence',
-        'Big Data',
-        'AI/ML Implementation'
-    ]
-  }
-];
-
 export default function Services() {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      icon: Database,
+      name: t('services.backend.name'),
+      description: t('services.backend.description'),
+      features: [
+        'API Development',
+        'Database Design',
+        'Cloud Integration',
+        'Security Implementation'
+      ]
+    },
+    {
+      icon: Code,
+      name: t('services.fullstack.name'),
+      description: t('services.fullstack.description'),
+      features: [
+        'Custom Website Development',
+        'E-commerce Solutions',
+        'CMS Integration',
+        'Performance Optimization',
+      ]
+    },
+    {
+      icon: Globe,
+      name: t('services.consulting.name'),
+      description: t('services.consulting.description'),
+      features: [
+        'AI Integration',
+        'Technical Architecture',
+        'Code Review',
+        'Performance Audits',
+        'Team Training'
+      ]
+    },
+    {
+      icon: Bolt,
+      name: t('services.software.name'),
+      description: t('services.software.description'),
+      features: [
+          'Robotics',
+          'IOT',
+          'Blockchain'
+      ]
+    },
+    {
+      icon: GitGraphIcon,
+      name: t('services.data.name'),
+      description: t('services.data.description'),
+      features: [
+          'Data analysis',
+          'Business Intelligence',
+          'Big Data',
+          'AI/ML Implementation'
+      ]
+    }
+  ];
+
   return (
     <section id="services" className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Services & Solutions
+            {t('services.title')}
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-            Comprehensive development services tailored to your needs
+            {t('services.subtitle')}
           </p>
         </div>
 
         <div className="mt-8 text-center">
           <div className="bg-blue-50 rounded-lg p-6 max-w-4xl mx-auto">
-            <h3 className="text-lg font-semibold text-blue-900 mb-2">Featured AI Solution</h3>
+            <h3 className="text-lg font-semibold text-blue-900 mb-2">{t('services.featured.title')}</h3>
             <p className="text-blue-800">
-              Discover how{' '}
+              {t('services.featured.description')} {' '}
               <a 
                 href="https://callavox.com" 
                 target="_blank" 
@@ -85,8 +88,7 @@ export default function Services() {
               >
                 Callavox
               </a>
-              {' '}transforms hospitality operations with AI-powered customer communication automation, 
-              helping hotels and restaurants streamline their guest services and improve customer satisfaction.
+              {' '} {t('services.featured.description')}
             </p>
           </div>
         </div>

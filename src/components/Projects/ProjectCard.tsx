@@ -1,11 +1,14 @@
 import { Github, ExternalLink } from 'lucide-react';
 import { Project } from '../../types/project';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const { t } = useLanguage();
+
   return (
     <div className="flex flex-col rounded-lg shadow-lg overflow-hidden h-full group hover:shadow-xl transition-shadow duration-300">
       {/* Clickable card content */}
@@ -71,7 +74,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               </a>
             )}
           </div>
-          <span className="text-xs text-gray-400 italic">Click anywhere to visit</span>
+          <span className="text-xs text-gray-400 italic">{t('projects.visit.hint')}</span>
         </div>
       )}
     </div>

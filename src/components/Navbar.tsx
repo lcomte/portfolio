@@ -1,8 +1,11 @@
 import { Menu, X, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 shadow-sm">
@@ -15,15 +18,16 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
-              <a href="#home" className="hover:text-blue-600 transition-colors">Home</a>
-              <a href="#about" className="hover:text-blue-600 transition-colors">About</a>
-              <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
-              <a href="#services" className="hover:text-blue-600 transition-colors">Services</a>
-              <a href="#contact" className="hover:text-blue-600 transition-colors">Contact</a>
+              <a href="#home" className="hover:text-blue-600 transition-colors">{t('nav.home')}</a>
+              <a href="#about" className="hover:text-blue-600 transition-colors">{t('nav.about')}</a>
+              <a href="#projects" className="hover:text-blue-600 transition-colors">{t('nav.projects')}</a>
+              <a href="#services" className="hover:text-blue-600 transition-colors">{t('nav.services')}</a>
+              <a href="#contact" className="hover:text-blue-600 transition-colors">{t('nav.contact')}</a>
             </div>
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
+            <LanguageSwitcher />
             <a href="https://x.com/ElComte_" className="text-gray-600 hover:text-blue-600 transition-colors">
               <Twitter size={20}/>
             </a>
@@ -53,11 +57,15 @@ export default function Navbar() {
       {/* Mobile menu */}
       {isOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#home" className="block px-3 py-2 rounded-md hover:bg-blue-50">Home</a>
-            <a href="#about" className="block px-3 py-2 rounded-md hover:bg-blue-50">About</a>
-            <a href="#services" className="block px-3 py-2 rounded-md hover:bg-blue-50">Services</a>
-            <a href="#contact" className="block px-3 py-2 rounded-md hover:bg-blue-50">Contact</a>
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+            <a href="#home" className="block px-3 py-2 rounded-md hover:bg-blue-50">{t('nav.home')}</a>
+            <a href="#about" className="block px-3 py-2 rounded-md hover:bg-blue-50">{t('nav.about')}</a>
+            <a href="#projects" className="block px-3 py-2 rounded-md hover:bg-blue-50">{t('nav.projects')}</a>
+            <a href="#services" className="block px-3 py-2 rounded-md hover:bg-blue-50">{t('nav.services')}</a>
+            <a href="#contact" className="block px-3 py-2 rounded-md hover:bg-blue-50">{t('nav.contact')}</a>
+            <div className="px-3 py-2">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
       )}

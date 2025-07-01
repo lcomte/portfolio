@@ -1,30 +1,27 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
-
-interface ContactInfoItem {
-    icon: typeof Mail | typeof Phone | typeof MapPin;
-    title: string;
-    content: string;
-}
-
-const contactInfo: ContactInfoItem[] = [
-    {
-        icon: Mail,
-        title: 'Email',
-        content: 'lucas.comte63700@gmail.com'
-    },
-    {
-        icon: MapPin,
-        title: 'Location',
-        content: 'Geneva, Switzerland'
-    },
-    {
-        icon: Phone,
-        title: 'WeChat',
-        content: 'lc63700'
-    }
-];
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function ContactInfo() {
+    const { t } = useLanguage();
+
+    const contactInfo = [
+        {
+            icon: Mail,
+            title: t('contact.info.email'),
+            content: 'lucas.comte63700@gmail.com'
+        },
+        {
+            icon: MapPin,
+            title: t('contact.info.location'),
+            content: 'Geneva, Switzerland'
+        },
+        {
+            icon: Phone,
+            title: t('contact.info.wechat'),
+            content: 'lc63700'
+        }
+    ];
+
     return (
         <div className="bg-gray-50 rounded-lg p-8">
             <div className="space-y-8">
