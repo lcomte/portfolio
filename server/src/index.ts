@@ -15,8 +15,25 @@ dotenv.config();
 
 const app: Express = express();
 app.use(express.json());
+
+// Allow multiple origins for development and production
+const allowedOrigins = [
+    'https://lucascomte.com',
+    'http://localhost:5173',
+    'https://localhost:5173'
+];
+
 app.use(cors({
-    origin: 'https://lucascomte.com', // Replace with your frontend's origin
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', "PUT", "DELETE"],        // Allowed HTTP methods
     allowedHeaders: ['Content-Type'] // Allowed headers
 }));
