@@ -5,10 +5,12 @@ import { Project } from '../types/project';
 import { ContactFormData, ContactResponse } from '../types/contact';
 import { supabase } from '../lib/supabase';
 
-// Using a local fallback while developing
-const API_URL = import.meta.env.PROD 
-  ? 'https://api.lucascomte.com' 
-  : 'http://localhost:3000';
+// Using environment variable for API URL with fallback
+const API_URL = import.meta.env.VITE_API_URL || (
+  import.meta.env.PROD 
+    ? 'https://api.lucascomte.com' 
+    : 'http://localhost:3000'
+);
 
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
@@ -16,7 +18,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
     return response.data;
   } catch (error) {
     console.error('Error fetching blog posts:', error);
-    throw error;
+    return []; // Return empty array as fallback
   }
 };
 
@@ -32,11 +34,13 @@ export const getBlogPost = async (id: string): Promise<BlogPostFull> => {
 
 export const getProjects = async (): Promise<Project[]> => {
   try {
-    const response = await axios.get(`${API_URL}/project/display`);
+    const response = await axios.get(`${API_URL}/project/display`, {
+      timeout: 10000, // 10 second timeout
+    });
     return response.data;
   } catch (error) {
     console.error('Error fetching projects:', error);
-    // If the API fails, return at least the Callavox project to show something
+    // Return fallback data if API fails
     return [{
       id: 'callavox-ai',
       title: 'Callavox AI',

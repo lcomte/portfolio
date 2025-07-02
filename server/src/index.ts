@@ -9,8 +9,6 @@ import {sendEmail} from "./emailService/src/emailService";
 import * as fs from "node:fs";
 import {Project} from "./model/project"; // Import the mongoose configuration file
 
-
-
 dotenv.config();
 
 const app: Express = express();
@@ -38,14 +36,27 @@ app.use(cors({
     allowedHeaders: ['Content-Type'] // Allowed headers
 }));
 
-
 const port = process.env.PORT || 3000;
-connectToDB()
 
-app.get("/", (req: Request, res: Response) => {
-    res.send("Express + TypeScript Server");
+// Add health check endpoint
+app.get("/health", (req: Request, res: Response) => {
+    res.status(200).json({ status: "OK", timestamp: new Date().toISOString() });
 });
 
+app.get("/", (req: Request, res: Response) => {
+    res.send("Express + TypeScript Server - Portfolio API");
+});
+
+// Add missing blog posts endpoint that frontend expects
+app.get('/posts', async (req: Request, res: Response): Promise<any> => {
+    // Return empty array for now since blog functionality isn't implemented yet
+    res.json([]);
+});
+
+app.get('/posts/:id', async (req: Request, res: Response): Promise<any> => {
+    // Return 404 for specific blog posts since not implemented yet
+    res.status(404).json({ error: 'Blog post not found' });
+});
 
 app.post('/newsletter/subscribe', async (req: Request, res: Response): Promise<any> => {
     const { email } = req.body;
@@ -92,13 +103,35 @@ app.get('/unsubscribe/:id', async (req:Request, res: Response): Promise<any> => 
 });
 
 app.get('/project', async  (req: Request, res: Response): Promise<any> => {
-    res.send(await Project.find())
+    try {
+        const projects = await Project.find();
+        res.json(projects);
+    } catch (error) {
+        console.error('Error fetching projects:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 });
 
 app.get('/project/display', async  (req: Request, res: Response): Promise<any> => {
-    res.send(await Project.find({display: true}))
+    try {
+        const projects = await Project.find({display: true});
+        res.json(projects);
+    } catch (error) {
+        console.error('Error fetching display projects:', error);
+        // Return fallback data if database fails
+        const fallbackProjects = [{
+            _id: 'callavox-ai',
+            title: 'Callavox AI',
+            description: 'An AI solution for hotels and restaurants to efficiently handle client requests from booking to special accommodations. Streamlines communication and improves customer service through intelligent automation.',
+            image: 'https://images.pexels.com/photos/6476587/pexels-photo-6476587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+            tech: ['AI', 'Machine Learning', 'Node.js', 'React', 'AWS'],
+            github: '',
+            demo: 'https://callavox.com',
+            display: true
+        }];
+        res.json(fallbackProjects);
+    }
 });
-
 
 app.post('/project', async (req: Request, res: Response): Promise<any> => {
     const {title, description, image, tech, github, demo, display} = req.body;
@@ -116,7 +149,6 @@ app.post('/project', async (req: Request, res: Response): Promise<any> => {
         console.error('Error saving message:', error.message);
         res.status(500).json({ message: 'Internal server error' });
     }
-
 });
 
 app.post('/contact', async (req: Request, res: Response): Promise<any> =>{
@@ -146,9 +178,28 @@ app.post('/contact', async (req: Request, res: Response): Promise<any> =>{
         console.error('Error saving message:', error.message);
         res.status(500).json({ message: 'Internal server error' });
     }
-
-})
-
-app.listen(port, () => {
-    console.log(`[server]: Server is running at http://localhost:${port}`);
 });
+
+// Error handling middleware
+app.use((error: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    console.error('Unhandled error:', error);
+    res.status(500).json({ message: 'Internal server error', error: error.message });
+});
+
+// Initialize database connection and start server
+const startServer = async () => {
+    try {
+        await connectToDB();
+        console.log('Database connected successfully');
+        
+        app.listen(port, () => {
+            console.log(`[server]: Server is running at http://localhost:${port}`);
+            console.log(`[server]: Health check available at http://localhost:${port}/health`);
+        });
+    } catch (error) {
+        console.error('Failed to start server:', error);
+        process.exit(1);
+    }
+};
+
+startServer();
