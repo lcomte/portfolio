@@ -28,6 +28,12 @@ export function FooterSection() {
       <p className="mt-8 font-mono text-xs text-muted">
         © {year} {siteConfig.name}
       </p>
+      <p className="mt-2 font-mono text-xs text-muted">
+        {siteConfig.name} · {siteConfig.legalForm} · SIRET {siteConfig.siret} ·{' '}
+        <a href={`mailto:${siteConfig.email}`} className={linkClass}>
+          {siteConfig.email}
+        </a>
+      </p>
     </footer>
   )
 }

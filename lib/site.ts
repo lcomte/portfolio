@@ -6,7 +6,9 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lucascomte.com',
   bookingUrl:
     process.env.NEXT_PUBLIC_BOOKING_URL ?? 'https://cal.com/lucas-comte/15min',
-  email: 'lucas.comte63700@gmail.com',
+  email: 'contact@lucascomte.com',
+  legalForm: 'Entrepreneur individuel (EI)',
+  siret: '889 059 606 00018',
   linkedin: 'https://www.linkedin.com/in/lucas-comte-2011a1161/',
   x: process.env.NEXT_PUBLIC_X_URL ?? 'https://x.com/lucascomte',
   tagline: 'AI implementation for B2B teams — Bangkok, remote-first',
